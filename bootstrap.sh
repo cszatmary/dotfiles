@@ -63,10 +63,6 @@ fi
 info "Installing brew packages..."
 brew bundle
 
-# Install rust
-info "Installing ${CYAN}rust"
-curl https://sh.rustup.rs -sSf | sh
-
 # Set zsh as the default shell
 info "Checking default shell"
 
@@ -112,6 +108,10 @@ vim +PluginInstall +qall
 # Install macOS defaults
 info "Installing macOS defaults"
 ./macos/defaults.sh
+
+# Install rust
+info "Installing ${CYAN}rust"
+curl https://sh.rustup.rs -sSf | sh
 
 # Install vscodium extensions
 info "Installing VSCodium extensions"
