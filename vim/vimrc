@@ -1,0 +1,82 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+syntax on
+
+let mapleader=","
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" Add all plugins below :
+
+Plugin 'wakatime/vim-wakatime'
+Plugin 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/syntastic'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'sheerun/vim-polyglot'
+
+" === End of Plugins ===
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+" NerdTree Settings
+autocmd vimenter * NERDTree
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+ "
+:command NT NERDTree
+
+"Show hidden files by default
+let NERDTreeShowHidden=1
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+"Vim colorschemes
+colorscheme molokai
+
+
+"Vim Toolbar with airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:monokai = 1
+:let g:airline_theme='molokai'
+
+"Custom Config
+
+"Turn on line numbers
+set number
+
+"Setup tab
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set expandtab
+
+set backspace=indent,eol,start
