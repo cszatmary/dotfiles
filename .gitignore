@@ -1,2 +1,5 @@
 .DS_Store
 *.local.*
+.extras/
+zsh/themes/
+!zsh/themes/.gitkeep
