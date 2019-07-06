@@ -27,7 +27,7 @@ copy_file() {
         mv $2 "$2.bak"
     fi
 
-    info "Copying ${CYAN}$2${CLEAR} to ${CYAN}$1"
+    info "Copying ${CYAN}$1${CLEAR} to ${CYAN}$2"
     cp $1 $2
 }
 
@@ -90,44 +90,57 @@ copy_file ./git/gitconfig "$HOME/.gitconfig"
 mkdir -p "$HOME/.ssh"
 copy_file ./ssh/config "$HOME/.ssh/config"
 
-copy_file ./tmux.conf "$HOME/.tmux.conf"
+copy_file ./tmux/tmux.conf "$HOME/.tmux.conf"
 
 copy_file ./vim/vimrc "$HOME/.vimrc"
 
 mkdir -p "$HOME/Library/Application Support/VSCodium/User"
-copy_file ./vscodium/settings.json "$HOME/Library/Application Support/VSCodium/User/settings.json"
+info "Copying vscodium settings"
+cp ./vscodium/settings.json "$HOME/Library/Application Support/VSCodium/User/settings.json"
 
 copy_file ./zsh/zshrc "$HOME/.zshrc"
 
 # Configure vim
 info "Configuring ${CYAN}vim"
-mkdir -p ~/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+if [[ ! -d "$HOME/.vim/bundle" ]]; then
+    mkdir -p ~/.vim/bundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+fi
+
 vim +PluginInstall +qall
 
 # Install macOS defaults
-info "Installing macOS defaults"
-./macos/defaults.sh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    info "Installing macOS defaults"
+    ./macos/defaults.sh
+fi
 
 # Install rust
 info "Installing ${CYAN}rust"
 curl https://sh.rustup.rs -sSf | sh
 
 # Install vscodium extensions
+
+if [[ ! command -v codium > /dev/null ]]; then
+    info "${CYAN}codium${CLEAR} command is not installed, please install it before continuing"
+    read -p "Press enter to continue"
+fi
+
 info "Installing VSCodium extensions"
-for ext in "$(cat ./vscodium/Codefile)"; do
+for ext in $(cat ./vscodium/Codefile); do
     codium --install-extension $ext
 done
 
 # Install spaceship theme
 info "Installing spaceship theme for zsh"
 git clone https://github.com/denysdovhan/spaceship-prompt.git ./zsh/themes/spaceship-prompt
-ln -s ./zsh/themes/spaceship-prompt/spaceship.zsh-theme ./zsh/themes/spaceship.zsh-theme
+cp ./zsh/themes/spaceship-prompt/spaceship.zsh-theme ./zsh/themes/spaceship.zsh-theme
 
 # Installi the-one-theme
 info "Installing the one theme"
 mkdir -p ./.extras
-git clone https://github.com/benniemosher/the-one-theme/ ./.extras
+git clone https://github.com/benniemosher/the-one-theme/ ./.extras/the-one-theme
 info "the one theme is located at ${CYAN}$(pwd)/.extras/the-one-theme"
 
 # Install powerline fonts

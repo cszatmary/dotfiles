@@ -40,6 +40,10 @@ dockutil --no-restart --add "/Applications/Firefox Developer Edition.app"
 dockutil --no-restart --add "/Applications/iTerm.app"
 dockutil --no-restart --add "/Applications/System Preferences.app"
 
+dockutil --no-restart --add "/Applications" --view grid --display folder --section others --sort name
+dockutil --no-restart --add "~/Documents" --view grid --display folder --section others --sort name
+dockutil --no-restart --add "~/Downloads" --view grid --display folder --section others --sort dateadded
+
 ##### Restart Apps ######
 for app in "Dock" "Finder"; do
     killall "$app" &> /dev/null
