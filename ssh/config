@@ -1,0 +1,7 @@
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  XAuthLocation /usr/X11/bin/xauth
+
+Host github.com
+  IdentityFile ~/.ssh/id_rsa
