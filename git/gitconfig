@@ -1,0 +1,40 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Christopher Szatmary
+	email = cs@christopherszatmary.com
+
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+	      ui = true
+        interactive = auto
+        grep = auto
+        showBranch = auto
+
+[core]
+        excludesfile = ~/.gitignore
+        editor = vim
+
+[push]
+	default = tracking
+
+[fetch]
+	prune = true
+
+[github]
+    user = cszatma
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
