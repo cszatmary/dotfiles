@@ -8,7 +8,7 @@ This is my customized setup. You are free to use it if you want, but use it at y
 Clone this repo into your home directory. Then cd into that directory and run the boostrap script.
 
 ```sh
-git clone https://github.com/cszatma/dotfiles.git
+git clone https://github.com/cszatma/dotfiles.git ~/.dotfiles
 cd dotfiles
 ./bootstrap.sh
 ```

@@ -1,8 +1,8 @@
 # Useful functions
 
-update_zsh_custom() {
+update_dotfiles() {
     CURRENT_DIR="$(pwd)"
-    cd ~/.zsh
+    cd ~/.dotfiles
 
     NO_UPDATE="Already up to date."
     if [[ "$(git pull)" == $NO_UPDATE ]]; then
