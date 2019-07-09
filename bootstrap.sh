@@ -117,12 +117,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # Install rust
-info "Installing ${CYAN}rust"
-curl https://sh.rustup.rs -sSf | sh
+if ! command -v rustc > /dev/null; then
+    info "Installing ${CYAN}rust"
+    curl https://sh.rustup.rs -sSf | sh
+else
+    info "Rust is already installed!"
+fi
 
 # Install vscodium extensions
 
-if [[ ! command -v codium > /dev/null ]]; then
+if ! command -v codium > /dev/null; then
     info "${CYAN}codium${CLEAR} command is not installed, please install it before continuing"
     read -p "Press enter to continue"
 fi
