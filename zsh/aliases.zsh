@@ -18,3 +18,6 @@ alias nuke_node_modules='command rm -rf node_modules'
 alias editconfig='vim ~/.zshrc'
 
 alias lzd='lazydocker'
+
+alias cat='bat'
+alias ls='exa -lah'
