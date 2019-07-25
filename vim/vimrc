@@ -4,6 +4,7 @@ syntax on
 
 let mapleader=","
 
+set rtp+=/usr/local/opt/fzf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -23,7 +24,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'sheerun/vim-polyglot'
+Plugin 'sheerun/vim-polyglot'
+
+Plugin 'junegunn/fzf.vim'
 
 " === End of Plugins ===
 
@@ -58,15 +61,17 @@ let g:syntastic_check_on_wq = 0
 
 
 "Vim colorschemes
-colorscheme molokai
+colorscheme monokai
+" colorscheme molokai
 
 
 "Vim Toolbar with airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:monokai = 1
-:let g:airline_theme='molokai'
+let g:deus = 1
+let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
 
 "Custom Config
 
@@ -80,3 +85,13 @@ set autoindent
 set expandtab
 
 set backspace=indent,eol,start
+
+" General indent
+au BufNewFile,BufRead *.js,*.ts,*.html,*.css,*.scss,*.json,*.yml
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
+" Recognize config files as json
+au BufNewFile,BufRead .eslintrc,.babelrc,.prettierrc,.lintstagedrc,.huskyrc
+    \ set ft=json
