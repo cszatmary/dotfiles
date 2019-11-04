@@ -181,7 +181,11 @@ toggleHidden() {
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Opens the given resource in Xcode 
     xcode() {
-        open $1 -a $XCODE
+        if [[ "$1" == "-v" ]]; then
+            open $3 -a "/Applications/Xcode_$2.app"
+        else
+            open $1 -a $XCODE
+        fi
     }
 
     # Opens the given resource in the browser specified in $WEB_BROWSER

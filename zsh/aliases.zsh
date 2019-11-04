@@ -7,9 +7,6 @@ alias lj='jobs'
 alias clr='clear'
 alias reload!='source ~/.zshrc'
 
-# brew cask aliases
-alias cask='brew cask'
-
 # Switch to a bash login shell
 alias bash!='exec bash --login'
 
@@ -21,3 +18,14 @@ alias lzd='lazydocker'
 
 alias cat='bat'
 alias ls='exa -lah'
+
+# Show largest files
+alias du='du -hs * | sort -hr'
+
+# macOS only
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # brew cask aliases
+    alias cask='brew cask'
+
+    alias simctl='xcrun simctl'
+fi

@@ -16,6 +16,10 @@
         excludesfile = ~/.gitignore
         editor = vim
 
+[pull]
+	ff = only
+	rebase = true
+
 [push]
 	default = tracking
 

@@ -8,6 +8,8 @@ CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 CLEAR='\033[0m'
 
+# Helper functions for logging
+
 info() {
     printf "${CYAN}INFO: ${CLEAR}$1\n"
 }
@@ -30,6 +32,8 @@ copy_file() {
     info "Copying ${CYAN}$1${CLEAR} to ${CYAN}$2"
     cp $1 $2
 }
+
+# ----- START -----
 
 if [[ $USER == 'root' ]]; then
     fail "Don't run this script as root"
@@ -94,9 +98,11 @@ copy_file ./tmux/tmux.conf "$HOME/.tmux.conf"
 
 copy_file ./vim/vimrc "$HOME/.vimrc"
 
-mkdir -p "$HOME/Library/Application Support/VSCodium/User"
-info "Copying vscodium settings"
-cp ./vscodium/settings.json "$HOME/Library/Application Support/VSCodium/User/settings.json"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    mkdir -p "$HOME/Library/Application Support/VSCodium/User"
+    info "Copying vscodium settings"
+    cp ./vscodium/settings.json "$HOME/Library/Application Support/VSCodium/User/settings.json"
+fi
 
 copy_file ./zsh/zshrc "$HOME/.zshrc"
 
