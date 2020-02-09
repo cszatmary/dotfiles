@@ -1,0 +1,21 @@
+dotfiles:
+  git:
+    src: git/gitconfig
+    dest: ~/.gitconfig
+    os: '*'
+  ssh:
+    src: ssh/config
+    dest: ~/.ssh/config
+    os: macos
+  tmux:
+    src: tmux/tmux.conf
+    dest: ~/.tmux.conf
+    os: '*'
+  vim:
+    src: vim/vimrc
+    dest: ~/.vimrc
+    os: '*'
+  zsh:
+    src: zsh/zshrc
+    dest: ~/.zshrc
+    os: '*'
