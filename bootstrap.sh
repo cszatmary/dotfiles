@@ -23,44 +23,26 @@ fail() {
   exit 1
 }
 
-copy_file() {
-    if [[ -f $2 ]]; then
-        info "Backing up ${CYAN}$2"
-        mv $2 "$2.bak"
-    fi
-
-    info "Copying ${CYAN}$1${CLEAR} to ${CYAN}$2"
-    cp $1 $2
-}
-
 # ----- START -----
 
 if [[ $USER == 'root' ]]; then
     fail "Don't run this script as root"
 fi
 
-# Install homebrew/linuxbrew
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    # OS is macOS
-    BREW_NAME='homebrew'
-    BREW_URL='https://raw.githubusercontent.com/Homebrew/install/master/install'
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # OS is GNU/Linux
-    BREW_NAME='linuxbrew'
-    BREW_URL='https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh'
-else
+# Make sure it's a supported OS
+if [[ "$OSTYPE" != "darwin"* && "$OSTYPE" != "linux-gnu" ]]; then
     fail 'Unsupported OS. Only macOS and linux are supported.'
 fi
 
 # Check if brew is installed
-info "Checking if ${CYAN}$BREW_NAME ${CLEAR}is installed..."
+info "Checking if ${CYAN}homebrew${CLEAR} is installed..."
 
 if ! command -v brew > /dev/null; then
-  info "Installing ${CYAN}$BREW_NAME"
-  /usr/bin/ruby -e "$(curl -fsSL "$BREW_URL")"
-  success "Successfully installed ${CYAN}$BREW_NAME"
+  info "Installing ${CYAN}homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  success "Successfully installed ${CYAN}homebrew"
 else
-  info "${CYAN}$BREW_NAME${CLEAR} is already installed!"
+  info "${CYAN}homebrew${CLEAR} is already installed!"
 fi
 
 # Install from brewfile
@@ -88,23 +70,18 @@ else
     success "Successfully installed ${CYAN}oh-my-zsh"
 fi
 
-# Copy dotfiles
-copy_file ./git/gitconfig "$HOME/.gitconfig"
+# Install dot to manage dotfiles
+go get -u github.com/cszatma/dot
+DOT="$(go env GOPATH)/bin/dot"
+DOT setup -v
+DOT apply -v
 
-mkdir -p "$HOME/.ssh"
-copy_file ./ssh/config "$HOME/.ssh/config"
-
-copy_file ./tmux/tmux.conf "$HOME/.tmux.conf"
-
-copy_file ./vim/vimrc "$HOME/.vimrc"
-
+# TODO figure this out for linux
 if [[ "$OSTYPE" == "darwin"* ]]; then
     mkdir -p "$HOME/Library/Application Support/VSCodium/User"
     info "Copying vscodium settings"
     cp ./vscodium/settings.json "$HOME/Library/Application Support/VSCodium/User/settings.json"
 fi
-
-copy_file ./zsh/zshrc "$HOME/.zshrc"
 
 # Configure vim
 info "Configuring ${CYAN}vim"
