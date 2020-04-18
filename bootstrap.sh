@@ -72,9 +72,9 @@ fi
 
 # Install dot to manage dotfiles
 go get -u github.com/cszatma/dot
-DOT="$(go env GOPATH)/bin/dot"
-DOT setup -v
-DOT apply -v
+alias dot="$(go env GOPATH)/bin/dot"
+dot setup -v
+dot apply -v
 
 # TODO figure this out for linux
 if [[ "$OSTYPE" == "darwin"* ]]; then

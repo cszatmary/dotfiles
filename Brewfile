@@ -13,6 +13,7 @@ tap 'kylef/formulae'
 # macOS only
 if OS.mac?
     brew 'dockutil'
+    brew 'reattach-to-user-namespace'
 end
 
 brew 'adns'
@@ -65,7 +66,6 @@ brew 'pkg-config'
 brew 'python'
 brew 'python@2'
 brew 'readline'
-brew 'reattach-to-user-namespace'
 brew 'ripgrep'
 brew 'ruby'
 brew 'speedtest-cli'
