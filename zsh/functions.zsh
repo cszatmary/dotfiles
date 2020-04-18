@@ -193,3 +193,4 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         open $1 -a $WEB_BROWSER
     }
 fi
+

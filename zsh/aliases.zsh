@@ -29,3 +29,4 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
     alias simctl='xcrun simctl'
 fi
+

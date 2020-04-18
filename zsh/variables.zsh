@@ -14,3 +14,4 @@ WEB_BROWSER="/Applications/Firefox Developer Edition.app"
 
 # Xcode path
 XCODE="/Applications/Xcode.app"
+
