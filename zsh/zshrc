@@ -36,6 +36,16 @@ SPACESHIP_ROOT="$HOME/.dotfiles/zsh/themes/spaceship-prompt"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-extras autojump brew vi-mode pod yarn swiftpm npm)
 
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # Add linuxbrew to PATH
+    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+    export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+
+    export TERM=xterm-256color
+    eval $(ssh-agent)
+fi
+
 # Load homebrew completion
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -58,13 +68,17 @@ fi
 
 eval $(thefuck --alias)
 
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    [ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
+    source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
