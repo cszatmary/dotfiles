@@ -1,4 +1,4 @@
-# cszatma's dotfiles
+# cszatmary's dotfiles
 My dotfiles for macOS (and somewhat for linux).
 
 ## Disclaimer
@@ -10,7 +10,7 @@ Please note that the git config has my git username and email, so you will need 
 ### Automatic Install
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/cszatma/dotfiles/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/cszatmary/dotfiles/master/install.sh)"
 ```
 
 ### Manual Install
@@ -18,7 +18,7 @@ Please note that the git config has my git username and email, so you will need 
 Clone this repo into your home directory. Then cd into that directory and run the boostrap script.
 
 ```sh
-git clone https://github.com/cszatma/dotfiles.git ~/.dotfiles
+git clone https://github.com/cszatmary/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./bootstrap.sh
 ```

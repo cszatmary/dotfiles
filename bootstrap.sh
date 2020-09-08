@@ -71,7 +71,7 @@ else
 fi
 
 # Install dot to manage dotfiles
-go get -u github.com/cszatma/dot
+go get -u github.com/cszatmary/dot
 alias dot="$(go env GOPATH)/bin/dot"
 dot setup -v
 dot apply -v

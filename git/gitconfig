@@ -27,7 +27,7 @@
 	prune = true
 
 [github]
-    user = cszatma
+    user = cszatmary
 
 [color "diff-highlight"]
 	oldNormal = red bold

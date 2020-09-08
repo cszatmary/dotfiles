@@ -29,7 +29,7 @@ fi
 
 # Use https since this will likely be run before ssh keys are setup
 info "Cloning dotfiles to ${CYAN}$INSTALL_DIR"
-git clone https://github.com/cszatma/dotfiles.git "$INSTALL_DIR"
+git clone https://github.com/cszatmary/dotfiles.git "$INSTALL_DIR"
 
 info "Running ${CYAN}bootstrap.sh"
 cd "$INSTALL_DIR"
