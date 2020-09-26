@@ -9,15 +9,38 @@
         "typescript",
         "typescriptreact"
     ],
-    "sourcekit-lsp.toolchainPath": "/Library/Developer/Toolchains/swift-5.0.1-RELEASE.xctoolchain",
-    "sourcekit-lsp.serverPath": "sourcekit-lsp",
-    "window.openFoldersInNewWindow": "on",
+    "auto-close-tag.activationOnLanguage": [
+        "xml",
+        "php",
+        "blade",
+        "ejs",
+        "jinja",
+        "javascriptreact",
+        "typescriptreact",
+        "plaintext",
+        "markdown",
+        "vue",
+        "liquid",
+        "erb",
+        "lang-cfml",
+        "cfml",
+        "HTML (Eex)"
+    ],
+    "window.openFoldersInNewWindow": "off",
     "extensions.ignoreRecommendations": false,
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.tabSize": 2,
     },
     "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2,
+    },
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.tabSize": 2,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "go.useLanguageServer": true,
@@ -35,5 +58,25 @@
         "findReferences": true,
         "diagnostics": true,
         "documentLink": false
-    }
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2,
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2,
+    },
+    "window.zoomLevel": 0,
+    "files.trimTrailingWhitespace": true,
+    "window.nativeTabs": true,
+    "editor.multiCursorModifier": "alt",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.associations": {
+        "*.gohtml": "html"
+    },
+    "[html]": {
+        "editor.tabSize": 2,
+    },
+    "latex-workshop.view.pdf.viewer": "tab",
 }
