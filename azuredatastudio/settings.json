@@ -1,0 +1,35 @@
+{
+  "workbench.enablePreviewFeatures": true,
+  "telemetry.enableTelemetry": false,
+  "workbench.colorTheme": "Default Dark Azure Data Studio",
+  "workbench.startupEditor": "welcomePage",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "datasource.connectionGroups": [
+    {
+      "name": "ROOT",
+      "id": "C777F06B-202E-4480-B475-FA416154D458"
+    },
+    {
+      "name": "Production (Read Only)",
+      "id": "59ade28d-9a70-4bd1-80d3-5dd5c3dac115",
+      "parentId": "C777F06B-202E-4480-B475-FA416154D458",
+      "color": "#4452A6",
+      "description": "Read only access to production databases"
+    },
+    {
+      "name": "Production (Write Access)",
+      "id": "1eef0629-5330-4853-acb1-691d150b4aac",
+      "parentId": "C777F06B-202E-4480-B475-FA416154D458",
+      "color": "#7F0000",
+      "description": "Write access to production databases. BE CAREFUL!"
+    },
+    {
+      "name": "Local",
+      "id": "aef6f48e-76b5-4374-b8ee-fd1be5329b1f",
+      "parentId": "C777F06B-202E-4480-B475-FA416154D458",
+      "color": "#914576",
+      "description": "Local databases"
+    }
+  ]
+}

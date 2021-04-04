@@ -1,21 +1,13 @@
 dotfiles:
   git:
     src: git/gitconfig
-    dest: ~/.gitconfig
-    os: '*'
-  ssh:
-    src: ssh/config
-    dest: ~/.ssh/config
-    os: macos
+    dst: ~/.gitconfig
   tmux:
     src: tmux/tmux.conf
-    dest: ~/.tmux.conf
-    os: '*'
+    dst: ~/.tmux.conf
   vim:
     src: vim/vimrc
-    dest: ~/.vimrc
-    os: '*'
+    dst: ~/.vimrc
   zsh:
     src: zsh/zshrc
-    dest: ~/.zshrc
-    os: '*'
+    dst: ~/.zshrc

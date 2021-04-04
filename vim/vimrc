@@ -17,7 +17,6 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " Add all plugins below :
 
-Plugin 'wakatime/vim-wakatime'
 Plugin 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'

@@ -36,11 +36,13 @@ SPACESHIP_ROOT="$HOME/.dotfiles/zsh/themes/spaceship-prompt"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-extras autojump brew vi-mode pod yarn swiftpm npm)
 
+BREW_PREFIX="$(brew --prefix)"
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # Add linuxbrew to PATH
-    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-    export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+    # Add homebrew to PATH
+    export PATH="$BREW_PREFIX/bin:$PATH"
+    export MANPATH="$BREW_PREFIX/share/man:$MANPATH"
+    export INFOPATH="$BREW_PREFIX/share/info:$INFOPATH"
 
     export TERM=xterm-256color
     eval $(ssh-agent)
@@ -48,10 +50,15 @@ fi
 
 # Load homebrew completion
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+    FPATH=$BREW_PREFIX/share/zsh/site-functions:$FPATH
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$(go env GOPATH)/bin:$PATH"
+export PATH="$(attic config INSTALL_PATH):$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Set vim as the default editor
 export EDITOR='vim'
@@ -68,17 +75,9 @@ fi
 
 eval $(thefuck --alias)
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-else
-    [ -f /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh ] && . /home/linuxbrew/.linuxbrew/etc/profile.d/autojump.sh
-    source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$(go env GOPATH)/bin:$PATH"
-
+[ -f "$BREW_PREFIX/etc/profile.d/autojump.sh" ] && . "$BREW_PREFIX/etc/profile.d/autojump.sh"
+source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# This must be last
+source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
