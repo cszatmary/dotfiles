@@ -47,7 +47,7 @@ fi
 
 # Install from brewfile
 info "Installing brew packages..."
-brew bundle
+brew bundle --no-lock
 
 # Set zsh as the default shell
 info "Checking default shell"
@@ -70,17 +70,21 @@ else
     success "Successfully installed ${CYAN}oh-my-zsh"
 fi
 
-# Install dot to manage dotfiles
-go get -u github.com/cszatmary/dot
-alias dot="$(go env GOPATH)/bin/dot"
-dot setup -v
-dot apply -v
+# Apply dotfiles
+dot setup
+dot apply
 
 # TODO figure this out for linux
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    mkdir -p "$HOME/Library/Application Support/VSCodium/User"
-    info "Copying vscodium settings"
-    cp ./vscodium/settings.json "$HOME/Library/Application Support/VSCodium/User/settings.json"
+    # VSCode settings
+    mkdir -p "$HOME/Library/Application Support/Code/User"
+    info "Copying VSCode settings"
+    cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
+
+    # Azure Data Studio settings
+    mkdir -p "$HOME/Library/Application Support/azuredatastudio/User"
+    info "Copying Azure Data Studio settings"
+    cp ./azuredatastudio/settings.json "$HOME/Library/Application Support/azuredatastudio/User/settings.json"
 fi
 
 # Configure vim
@@ -99,24 +103,28 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     ./macos/defaults.sh
 fi
 
-# Install rust
-if ! command -v rustc > /dev/null; then
-    info "Installing ${CYAN}rust"
-    curl https://sh.rustup.rs -sSf | sh
-else
-    info "Rust is already installed!"
+# Install VSCode extensions
+
+if ! command -v code > /dev/null; then
+    info "${CYAN}code${CLEAR} command is not installed, please install it before continuing"
+    read -r -p "Press enter to continue"
 fi
 
-# Install vscodium extensions
-
-if ! command -v codium > /dev/null; then
-    info "${CYAN}codium${CLEAR} command is not installed, please install it before continuing"
-    read -p "Press enter to continue"
-fi
-
-info "Installing VSCodium extensions"
-for ext in $(cat ./vscodium/Codefile); do
+info "Installing VSCode extensions"
+for ext in $(cat ./vscode/Codefile); do
     codium --install-extension $ext
+done
+
+# Install Azure Data Studio extensions
+
+if ! command -v azuredatastudio > /dev/null; then
+    info "${CYAN}azuredatastudio${CLEAR} command is not installed, please install it before continuing"
+    read -r -p "Press enter to continue"
+fi
+
+info "Installing Azure Data Studio extensions"
+for ext in $(cat ./azuredatastudio/Codefile); do
+    azuredatastudio --install-extension $ext
 done
 
 # Install spaceship theme
