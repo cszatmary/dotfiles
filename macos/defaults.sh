@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Sets macOS defaults
 
 ##### Finder #####
@@ -34,7 +36,9 @@ defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 ##### Dock Applications #####
 dockutil --no-restart --remove all
-dockutil --no-restart --add "/Applications/VSCodium.app"
+dockutil --no-restart --add "/Applications/Music.app"
+dockutil --no-restart --add "/Applications/Visual Studio Code.app"
+dockutil --no-restart --add "/Applications/Xcode.app"
 dockutil --no-restart --add "/Applications/Brave Browser.app"
 dockutil --no-restart --add "/Applications/Firefox Developer Edition.app"
 dockutil --no-restart --add "/Applications/iTerm.app"
