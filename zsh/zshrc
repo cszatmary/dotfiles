@@ -34,50 +34,39 @@ SPACESHIP_ROOT="$HOME/.dotfiles/zsh/themes/spaceship-prompt"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git git-extras autojump brew vi-mode pod yarn swiftpm npm)
+plugins=(git git-extras autojump brew vi-mode)
 
-BREW_PREFIX="$(brew --prefix)"
-
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    # Add homebrew to PATH
-    export PATH="$BREW_PREFIX/bin:$PATH"
-    export MANPATH="$BREW_PREFIX/share/man:$MANPATH"
-    export INFOPATH="$BREW_PREFIX/share/info:$INFOPATH"
-
-    export TERM=xterm-256color
-    eval $(ssh-agent)
-fi
-
+PKG_PREFIX=/usr
 # Load homebrew completion
 if type brew &>/dev/null; then
-    FPATH=$BREW_PREFIX/share/zsh/site-functions:$FPATH
+    PKG_PREFIX="$(brew --prefix)"
+    FPATH=$PKG_PREFIX/share/zsh/site-functions:$FPATH
 fi
+
+# if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#     export TERM=xterm-256color
+#     eval $(ssh-agent)
+# fi
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
-export PATH="$(attic config INSTALL_PATH):$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 
 # Set vim as the default editor
 export EDITOR='vim'
 
-# nvm setup
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm when called
-alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+eval "$(fnm env)"
+eval "$(thefuck --alias)"
+eval "$(fzf --zsh)"
 
-# Swiftenv setup
-if which swiftenv > /dev/null; then
-    eval "$(swiftenv init -)"
-fi
+[ -f "$PKG_PREFIX/etc/profile.d/autojump.sh" ] && . "$PKG_PREFIX/etc/profile.d/autojump.sh"
+source "$PKG_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-eval $(thefuck --alias)
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/chrisszatmary/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chrisszatmary/google-cloud-sdk/path.zsh.inc'; fi
 
-[ -f "$BREW_PREFIX/etc/profile.d/autojump.sh" ] && . "$BREW_PREFIX/etc/profile.d/autojump.sh"
-source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/chrisszatmary/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chrisszatmary/google-cloud-sdk/completion.zsh.inc'; fi
 
 # This must be last
-source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$PKG_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

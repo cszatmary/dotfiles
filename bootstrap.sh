@@ -35,28 +35,30 @@ if [[ "$OSTYPE" != "darwin"* && "$OSTYPE" != "linux-gnu" ]]; then
 fi
 
 # Check if brew is installed
-info "Checking if ${CYAN}homebrew${CLEAR} is installed..."
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    info "Checking if ${CYAN}homebrew${CLEAR} is installed..."
 
-if ! command -v brew > /dev/null; then
-  info "Installing ${CYAN}homebrew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  success "Successfully installed ${CYAN}homebrew"
-else
-  info "${CYAN}homebrew${CLEAR} is already installed!"
+    if ! command -v brew > /dev/null; then
+        info "Installing ${CYAN}homebrew"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+        success "Successfully installed ${CYAN}homebrew"
+    else
+        info "${CYAN}homebrew${CLEAR} is already installed!"
+    fi
+
+    # Install from brewfile
+    info "Installing brew packages..."
+    brew bundle --no-lock
 fi
-
-# Install from brewfile
-info "Installing brew packages..."
-brew bundle --no-lock
 
 # Set zsh as the default shell
 info "Checking default shell"
 
-if [[ "$(echo $SHELL | xargs basename)" == "zsh" ]]; then
+if [[ "$(echo "$SHELL" | xargs basename)" == "zsh" ]]; then
   info "${CYAN}zsh${CLEAR} is already the default shell!"
 else
   info "Setting default shell to ${CYAN}zsh"
-  sudo chsh -s $(command -v zsh) "$USER"
+  sudo chsh -s "$(command -v zsh)" "$USER"
   success "Changed default shell to zsh"
 fi
 
@@ -71,8 +73,10 @@ else
 fi
 
 # Apply dotfiles
-dot setup
-dot apply
+ln -sf "$PWD/git/gitconfig" ~/.gitconfig
+ln -sf "$PWD/tmux/tmux.conf" ~/.tmux.conf
+ln -sf "$PWD/vim/vimrc" ~/.vimrc
+ln -sf "$PWD/zsh/zshrc" ~/.zshrc
 
 # TODO figure this out for linux
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -112,7 +116,7 @@ fi
 
 info "Installing VSCode extensions"
 for ext in $(cat ./vscode/Codefile); do
-    codium --install-extension $ext
+    code --install-extension $ext
 done
 
 # Install Azure Data Studio extensions
@@ -128,15 +132,19 @@ for ext in $(cat ./azuredatastudio/Codefile); do
 done
 
 # Install spaceship theme
-info "Installing spaceship theme for zsh"
-git clone https://github.com/denysdovhan/spaceship-prompt.git ./zsh/themes/spaceship-prompt
-cp ./zsh/themes/spaceship-prompt/spaceship.zsh-theme ./zsh/themes/spaceship.zsh-theme
+if [[ ! -d "./zsh/themes/spaceship-prompt" ]]; then
+    info "Installing spaceship theme for zsh"
+    git clone https://github.com/denysdovhan/spaceship-prompt.git ./zsh/themes/spaceship-prompt
+    cp ./zsh/themes/spaceship-prompt/spaceship.zsh-theme ./zsh/themes/spaceship.zsh-theme
+fi
 
 # Installi the-one-theme
-info "Installing the one theme"
 mkdir -p ./.extras
-git clone https://github.com/benniemosher/the-one-theme/ ./.extras/the-one-theme
-info "the one theme is located at ${CYAN}$(pwd)/.extras/the-one-theme"
+if [[ ! -d "./.extras/the-one-theme" ]]; then
+    info "Installing the one theme"
+    git clone https://github.com/benniemosher/the-one-theme/ ./.extras/the-one-theme
+    info "the one theme is located at ${CYAN}$(pwd)/.extras/the-one-theme"
+fi
 
 # Install powerline fonts
 info "Installing powerline fonts"

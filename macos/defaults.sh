@@ -39,8 +39,7 @@ dockutil --no-restart --remove all
 dockutil --no-restart --add "/Applications/Music.app"
 dockutil --no-restart --add "/Applications/Visual Studio Code.app"
 dockutil --no-restart --add "/Applications/Xcode.app"
-dockutil --no-restart --add "/Applications/Brave Browser.app"
-dockutil --no-restart --add "/Applications/Firefox Developer Edition.app"
+dockutil --no-restart --add "/Applications/Firefox.app"
 dockutil --no-restart --add "/Applications/iTerm.app"
 dockutil --no-restart --add "/Applications/System Preferences.app"
 
