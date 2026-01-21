@@ -84,11 +84,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     mkdir -p "$HOME/Library/Application Support/Code/User"
     info "Copying VSCode settings"
     cp ./vscode/settings.json "$HOME/Library/Application Support/Code/User/settings.json"
-
-    # Azure Data Studio settings
-    mkdir -p "$HOME/Library/Application Support/azuredatastudio/User"
-    info "Copying Azure Data Studio settings"
-    cp ./azuredatastudio/settings.json "$HOME/Library/Application Support/azuredatastudio/User/settings.json"
 fi
 
 # Configure vim
@@ -117,18 +112,6 @@ fi
 info "Installing VSCode extensions"
 for ext in $(cat ./vscode/Codefile); do
     code --install-extension $ext
-done
-
-# Install Azure Data Studio extensions
-
-if ! command -v azuredatastudio > /dev/null; then
-    info "${CYAN}azuredatastudio${CLEAR} command is not installed, please install it before continuing"
-    read -r -p "Press enter to continue"
-fi
-
-info "Installing Azure Data Studio extensions"
-for ext in $(cat ./azuredatastudio/Codefile); do
-    azuredatastudio --install-extension $ext
 done
 
 # Install spaceship theme

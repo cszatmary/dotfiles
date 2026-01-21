@@ -16,7 +16,7 @@ alias bash!='exec bash --login'
 alias lzd='lazydocker'
 
 alias cat='bat'
-alias ls='exa -lah'
+alias ls='eza -lah'
 
 # Show largest files
 alias du='du -hs * | sort -hr'

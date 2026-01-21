@@ -1,15 +1,10 @@
 cask_args appdir: '/Applications'
 
 tap 'cszatmary/tap'
-tap 'dbcli/tap'
 tap 'github/gh'
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
-tap 'homebrew/cask-versions'
-tap 'homebrew/core'
 tap 'homebrew/services'
 tap 'jesseduffield/lazydocker'
-tap 'touchbistro/tap'
 
 # macOS only
 if OS.mac?
@@ -20,12 +15,13 @@ end
 brew 'autojump'
 brew 'awscli'
 brew 'bat'
-brew 'circleci'
+brew 'cloudflared'
 brew 'cmake'
 brew 'deno'
-brew 'dot'
-brew 'exa'
+brew 'dive'
+brew 'eza'
 brew 'fd'
+brew 'fnm'
 brew 'fzf'
 brew 'gh'
 brew 'git-lfs'
@@ -37,15 +33,12 @@ brew 'htop'
 brew 'httpie'
 brew 'jq'
 brew 'lazydocker'
-brew 'litecli'
+brew 'libpq', link: true
 brew 'magic-wormhole'
 brew 'nasm'
 brew 'nmap'
-brew 'node@20'
-brew 'openssl'
-brew 'pgcli'
-brew 'python'
-brew 'readline'
+brew 'openssl@3'
+brew 'python@3.11'
 brew 'ripgrep'
 brew 'ruby'
 brew 'rust'
@@ -53,7 +46,6 @@ brew 'shellcheck'
 brew 'speedtest-cli'
 brew 'sphinx-doc'
 brew 'sqlite'
-brew 'tb'
 brew 'thefuck'
 brew 'tldr'
 brew 'tmux'
@@ -61,17 +53,27 @@ brew 'tree'
 brew 'vim'
 brew 'wget'
 brew 'xz'
+brew 'yt-dlp'
 brew 'zsh'
 brew 'zsh-autosuggestions'
 brew 'zsh-syntax-highlighting'
+brew 'cszatmary/tap/dot'
 
-cask 'azure-data-studio'
-cask 'docker'
-cask 'flux'
-cask 'iterm2'
-cask 'plex'
-cask 'postman'
-cask 'rocket'
-cask 'slack'
-cask 'visual-studio-code'
-cask 'xquartz'
+cask "1password"
+cask "1password-cli"
+cask "adobe-acrobat-reader"
+cask "bruno"
+cask "claude-code"
+cask "discord"
+cask "firefox"
+cask "flux-app"
+cask "gimp"
+cask "google-chrome"
+cask "iterm2"
+cask "nordvpn"
+cask "orbstack"
+cask "plex"
+cask "rocket"
+cask "slack"
+cask "visual-studio-code"
+cask "xquartz"

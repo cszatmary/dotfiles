@@ -2,7 +2,6 @@
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "One Dark Pro",
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -44,9 +43,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "go.useLanguageServer": true,
-  "go.languageServerExperimentalFeatures": {
-    "diagnostics": true
-  },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -55,7 +51,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
-  "window.zoomLevel": 0,
   "files.trimTrailingWhitespace": true,
   "window.nativeTabs": true,
   "editor.multiCursorModifier": "alt",
@@ -66,15 +61,15 @@
     "*.h": "c"
   },
   "[html]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "latex-workshop.view.pdf.viewer": "tab",
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4 }",
   "editor.linkedEditing": true,
-  "editor.formatOnSave": true,
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "latex-workshop.latexindent.path": "/Library/TeX/texbin/latexindent",
+  "latex-workshop.formatting.latexindent.path": "/Library/TeX/texbin/latexindent",
   "spectral.run": "onSave",
   "spectral.validateFiles": ["**/*openapi*.yaml", "**/*openapi*.yml"],
   "files.exclude": {
@@ -82,5 +77,58 @@
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
-  }
+  },
+  "githubPullRequests.pullBranch": "never",
+  "go.toolsManagement.autoUpdate": true,
+  "[yaml]": {
+    "editor.quickSuggestions": {
+      "other": "off",
+      "comments": "off",
+      "strings": "off"
+    }
+  },
+  "docker.extension.enableComposeLanguageServer": false,
+  "pgsql.serverGroups": [
+    {
+      "id": "980446BF-4FF6-4BF4-BB8F-0071742A6FCC",
+      "name": "Local",
+      "description": ""
+    },
+    {
+      "id": "951F04DE-D27B-4D0C-A2F2-AEE454E3FB76",
+      "name": "Production",
+      "description": ""
+    }
+  ],
+  "pgsql.connections": [],
+  "pgsql.openQueryResultsInTabByDefaultDoNotShowPrompt": true,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "typescript": false
+  },
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.selectedModel": "opus",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "editor.formatOnSave": true
 }
